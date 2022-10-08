@@ -1,48 +1,42 @@
-import java.util.Scanner;
+public class quicksort {
+    public static void quicksorts(int arr[],int si,int ei)
+    {
+        if(si>=ei)
+        {
+            return;
+        }
+        int ipdx=partition(arr,si,ei);
+        quicksorts(arr,si,ipdx-1);
+        quicksorts(arr,ipdx+1, ei);
+    }
+    public static int partition(int arr[],int si,int ei)
+    {
+        int pivot=arr[ei];
+        int i=si-1;
+        for(int j=si;j<ei;j++)
+        {
+            if(arr[j]<=pivot)
+            {
+                i++;
+                int temp=arr[j];
+                arr[j]=arr[i];
+                arr[i]=temp;
+            }
+         }
+         i++;
+         int temp=pivot;
+         arr[ei]=arr[i];
+         arr[i]=temp;
+         return i;
+ }
+    public static void main(String []args)
+    {
+        int arr[]={6,3,9,2,5};
+       quicksorts(arr,0,arr.length-1);
+       for(int i=0;i<arr.length;i++){
+        System.out.print(arr[i]);
+       }
 
-class BinarySearch {
-	
-	//Function using binary search algo in recursive method
-	int binarysearch(int[] arr,int l,int r,int x)
-	{
-		if(r>=l)
-		{
-			int mid=l+(r-l)/2;
-			
-			if(arr[mid]==x)
-				return mid;
-			
-			if(arr[mid]>x)
-				return binarysearch(arr,l,mid-1,x);
-			
-				return binarysearch(arr,mid+1,r,x);
-		}
-		return -1;
-	}
-	
-	//Main function is used to take inputs
-	public static void main(String args[])
-	{
-		Scanner input=new Scanner(System.in);
-		BinarySearch obj=new BinarySearch();
-		
-		System.out.print("Enter number of elements in array:");
-		int n=input.nextInt();
-		
-		int[] arr=new int[n];
-		System.out.println("Enter elements of the array:");
-		for(int i=0;i<n;i++)
-		arr[i]=input.nextInt();
-		
-		System.out.print("Enter element to be searched:");
-		int el=input.nextInt();
-		
-		int result = obj.binarysearch(arr,0,n-1,el);
-		
-	    if (result == -1)
-	        System.out.println("Element not present");
-	    else
-	        System.out.println("Element found at index "+result);
-		
-	}
+
+    }
 }
